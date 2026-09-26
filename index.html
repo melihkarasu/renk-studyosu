@@ -3,40 +3,211 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Harmoni: Renk & Kontrast Stüdyosu - Standalone</title>
+  <title>Harmoni: Renk & Kontrast Stüdyosu</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23fa520f' stroke='%2344403c' stroke-width='1.5'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='-apple-system,BlinkMacSystemFont,Inter,sans-serif' font-weight='800' font-size='13' letter-spacing='-0.5'%3EMK%3C/text%3E%3C/svg%3E">
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="css/mistral-theme.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231c1917' stroke='%2344403c' stroke-width='1.5'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='-apple-system,BlinkMacSystemFont,Inter,sans-serif' font-weight='800' font-size='13' letter-spacing='-0.5'%3EMK%3C/text%3E%3C/svg%3E">
-  <link rel="stylesheet" href="css/style.css">
-  
+  <link rel="stylesheet" href="css/mistral-theme.css">
   <style>
-    :root { --mistral-ink: #1c1917; --mistral-slate: #78716c; --mistral-stone: #a8a29e; --mistral-hairline: #e7e5e4; --mistral-cream: #f5f5f4; --mistral-beige-deep: #d6d3d1; }
-    body { font-family: 'Inter', sans-serif; background-color: #fafaf9; color: var(--mistral-ink); }
-    h1, h2, .font-editorial { font-family: 'Newsreader', serif; }
+    :root {
+      --mistral-ink: #1c1917;
+      --mistral-slate: #78716c;
+      --mistral-stone: #a8a29e;
+      --mistral-hairline: #e7e5e4;
+      --mistral-cream: #f5f5f4;
+      --mistral-cream-deeper: #e7e5e4;
+      --mistral-cream-light: #fafaf9;
+      --mistral-beige-deep: #d6d3d1;
+      --mistral-orange: #fa520f;
+    }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background-color: #fafaf9; color: var(--mistral-ink); }
+    h1, h2, h3, h4, .font-editorial { font-family: 'Newsreader', serif; }
     .font-mono { font-family: 'JetBrains Mono', monospace; }
+    .bg-mistral-cream { background-color: var(--mistral-cream); }
+    .bg-mistral-cream-deeper { background-color: var(--mistral-cream-deeper); }
+    .bg-mistral-cream-light { background-color: var(--mistral-cream-light); }
     .text-mistral-ink { color: var(--mistral-ink); }
     .text-mistral-slate { color: var(--mistral-slate); }
     .text-mistral-stone { color: var(--mistral-stone); }
-    .bg-mistral-cream { background-color: var(--mistral-cream); }
+    .text-mistral-orange { color: var(--mistral-orange); }
     .border-mistral-hairline { border-color: var(--mistral-hairline); }
-    .bg-mistral-canvas { background-color: #0f172a; }
+    .border-mistral-beige-deep { border-color: var(--mistral-beige-deep); }
+    .hover\\:bg-mistral-cream-deeper:hover { background-color: var(--mistral-cream-deeper) !important; }
+    .hover\\:text-mistral-ink:hover { color: var(--mistral-ink) !important; }
   </style>
 </head>
-<body class="p-4 md:p-8">
-  <div class="max-w-6xl mx-auto">
-    <div class="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
-      <div>
-        <div class="flex items-center gap-3">
-          <a href="https://github.com/melihkarasu" target="_blank" class="text-mistral-slate hover:text-teal-500 transition text-sm flex items-center gap-1">&larr; GitHub Profiline Dön</a>
-          <span class="text-mistral-stone">|</span>
-          <span class="px-2.5 py-0.5 rounded-full bg-teal-500/20 text-teal-600 text-xs font-semibold">Open Source Edition</span>
+<body class="p-4 sm:p-8">
+  <div class="max-w-7xl mx-auto">
+    <!-- Üst Başlık & Navigasyon -->
+      <div class="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <div class="flex items-center gap-3">
+            
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-normal font-editorial tracking-tight mt-1.5 text-mistral-ink flex items-center gap-2">
+            <span>🎨</span> Harmoni: Akıllı Renk Paleti & Kontrast Stüdyosu
+          </h1>
+          <p class="text-mistral-slate text-sm mt-0.5 font-normal">
+            The Color API ile matematiksel renk uyumları (analog, tamamlayıcı, triad), WCAG erişilebilirlik kontrast puanı ve CSS/Tailwind dışa aktarımı.
+          </p>
         </div>
-        <h1 class="text-3xl sm:text-4xl font-normal font-editorial tracking-tight mt-1.5 text-mistral-ink flex items-center gap-2"><span>🎨</span> Harmoni: Renk & Kontrast Stüdyosu</h1>
+
+        <div class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white border border-mistral-hairline text-xs text-mistral-ink shadow-xs">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span class="font-medium" id="color-mode-status">Harmoni Motoru Hazır</span>
+        </div>
       </div>
-    </div>
-    
+
+      <!-- KONTROL PANELİ: RENK SEÇİCİ, MOD VE RASTGELE BUTONU -->
+      <div class="p-6 rounded-2xl bg-white border border-mistral-hairline shadow-sm mb-8 space-y-4">
+        <div class="grid grid-cols-1 sm:grid-cols-12 gap-4 items-center">
+          <!-- Baz Renk Seçici -->
+          <div class="sm:col-span-5 flex items-center gap-3">
+            <input 
+              type="color" 
+              id="input-color-picker" 
+              value="#fa520f" 
+              onchange="onColorPickerChange(this.value)" 
+              class="w-12 h-12 rounded-xl border border-mistral-hairline cursor-pointer shrink-0 p-1 bg-white">
+            <div class="flex-1 relative">
+              <span class="text-xs text-mistral-stone font-medium block mb-1">Baz Renk (HEX):</span>
+              <input 
+                type="text" 
+                id="input-hex-text" 
+                value="#FA520F" 
+                maxlength="7"
+                oninput="onHexTextChange(this.value)"
+                class="w-full px-3 py-2 rounded-lg bg-white border border-mistral-hairline text-sm font-mono font-bold text-mistral-ink uppercase focus:outline-none focus:border-mistral-orange transition">
+            </div>
+          </div>
+
+          <!-- Harmoni Şema Modu -->
+          <div class="sm:col-span-4">
+            <span class="text-xs text-mistral-stone font-medium block mb-1">Harmoni Şeması:</span>
+            <select id="select-mode" onchange="generatePalette()" class="w-full px-3 py-2 rounded-lg bg-white border border-mistral-hairline text-sm text-mistral-ink focus:outline-none focus:border-mistral-orange transition">
+              <option value="analogic" selected>Analog (Analogic - Komşu Renkler)</option>
+              <option value="complement">Tamamlayıcı (Complementary - Zıt Renk)</option>
+              <option value="triad">Üçlü Harmoni (Triad - 120°)</option>
+              <option value="quad">Dörtlü Kare (Quad / Tetradic)</option>
+              <option value="monochrome">Monokrom (Tek Renk Tonları)</option>
+              <option value="analogic-complement">Analog + Tamamlayıcı</option>
+            </select>
+          </div>
+
+          <!-- Rastgele / Üret Butonları -->
+          <div class="sm:col-span-3 flex gap-2 pt-5 sm:pt-0">
+            <button 
+              type="button" 
+              onclick="randomColor()" 
+              title="Rastgele Renk Üret"
+              class="flex-1 py-2.5 px-3 rounded-md text-mistral-ink font-bold bg-mistral-cream hover:bg-mistral-cream-deeper text-mistral-ink border border-mistral-beige-deep font-semibold text-xs transition shadow-xs flex items-center justify-center gap-1.5 cursor-pointer">
+              <span>🎲</span> Rastgele
+            </button>
+            <button 
+              type="button" 
+              onclick="generatePalette()" 
+              class="flex-1 py-2.5 px-3 rounded-md bg-mistral-orange hover:bg-mistral-orange-deep text-white font-medium text-xs transition shadow-xs flex items-center justify-center gap-1 cursor-pointer">
+              <span>Oluştur</span> &rarr;
+            </button>
+          </div>
+        </div>
+
+        <!-- Hazır İlham Paletleri -->
+        <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-mistral-hairline text-xs">
+          <span class="text-mistral-stone font-medium mr-1">İlham Presetleri:</span>
+          <button onclick="setPreset('#FA520F', 'analogic')" class="px-2.5 py-1 rounded-md text-mistral-ink font-bold bg-mistral-cream hover:bg-mistral-cream-deeper text-mistral-ink border border-mistral-beige-deep transition">🌅 Mistral Sunset</button>
+          <button onclick="setPreset('#0F766E', 'triad')" class="px-2.5 py-1 rounded-md text-mistral-ink font-bold bg-mistral-cream hover:bg-mistral-cream-deeper text-mistral-ink border border-mistral-beige-deep transition">🌲 Orman Zümrütü</button>
+          <button onclick="setPreset('#6366F1', 'complement')" class="px-2.5 py-1 rounded-md text-mistral-ink font-bold bg-mistral-cream hover:bg-mistral-cream-deeper text-mistral-ink border border-mistral-beige-deep transition">🌌 Gece Göğü</button>
+          <button onclick="setPreset('#EC4899', 'quad')" class="px-2.5 py-1 rounded-md text-mistral-ink font-bold bg-mistral-cream hover:bg-mistral-cream-deeper text-mistral-ink border border-mistral-beige-deep transition">🍬 Neon Şeker</button>
+          <button onclick="setPreset('#D97706', 'monochrome')" class="px-2.5 py-1 rounded-md text-mistral-ink font-bold bg-mistral-cream hover:bg-mistral-cream-deeper text-mistral-ink border border-mistral-beige-deep transition">🍂 Sonbahar Kehribar</button>
+        </div>
+      </div>
+
+      <!-- 5'Lİ RENK PALETİ GÖRSEL BLOKLARI -->
+      <div id="palette-loading" class="hidden py-16 text-center">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-mistral-cream text-mistral-ink border border-mistral-beige-deep text-xs font-semibold">
+          <span class="w-2.5 h-2.5 rounded-full bg-mistral-orange animate-ping"></span>
+          <span>Renk spektrumu hesaplanıyor...</span>
+        </div>
+      </div>
+
+      <div id="palette-container" class="grid grid-cols-1 sm:grid-cols-5 gap-4 mb-10">
+        <!-- JS ile 5 renk kartı çizilir -->
+      </div>
+
+      <!-- WCAG ERİŞİLEBİLİRLİK & KOD DIŞA AKTARIMI -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-16">
+        <!-- Sol: WCAG Kontrast Analizörü (6 Kolon) -->
+        <div class="lg:col-span-6 space-y-4">
+          <div class="p-6 rounded-2xl bg-white border border-mistral-hairline shadow-sm space-y-4">
+            <div class="flex items-center justify-between pb-3 border-b border-mistral-hairline">
+              <h3 class="text-base font-bold font-editorial text-mistral-ink flex items-center gap-2">
+                <span>👁️</span> WCAG Okunabilirlik Kontrast Analizi
+              </h3>
+              <span class="text-xs text-mistral-stone font-mono" id="lbl-contrast-hex">#FA520F</span>
+            </div>
+
+            <p class="text-xs text-mistral-slate leading-relaxed">
+              Web İçeriği Erişilebilirlik Yönergeleri (WCAG 2.1) gereğince, normal metinlerde en az <strong>4.5:1</strong> (AA seviyesi), büyük başlıklarda ise en az <strong>3:1</strong> kontrast oranı bulunmalıdır.
+            </p>
+
+            <!-- Kontrast Önizleme Kartları -->
+            <div class="grid grid-cols-2 gap-3 text-xs">
+              <!-- Beyaz Metin ile Kontrast -->
+              <div id="card-contrast-white" class="p-4 rounded-xl flex flex-col justify-between h-32 text-white shadow-xs transition">
+                <span class="text-[11px] font-bold opacity-90">Beyaz Metin Üzerinde</span>
+                <span class="text-base font-bold">Örnek Metin</span>
+                <div class="flex items-center justify-between pt-2 border-t border-white/20 text-[10px]">
+                  <span id="ratio-white">Oran: --</span>
+                  <span id="badge-white" class="px-1.5 py-0.5 rounded font-bold bg-white/20">--</span>
+                </div>
+              </div>
+
+              <!-- Siyah Metin ile Kontrast -->
+              <div id="card-contrast-black" class="p-4 rounded-xl flex flex-col justify-between h-32 text-[#1f1f1f] shadow-xs transition">
+                <span class="text-[11px] font-bold opacity-80">Koyu Mürekkep Üzerinde</span>
+                <span class="text-base font-bold">Örnek Metin</span>
+                <div class="flex items-center justify-between pt-2 border-t border-black/10 text-[10px]">
+                  <span id="ratio-black">Oran: --</span>
+                  <span id="badge-black" class="px-1.5 py-0.5 rounded font-bold bg-black/10">--</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sağ: CSS & Tailwind Dışa Aktarımı (6 Kolon) -->
+        <div class="lg:col-span-6 space-y-4">
+          <div class="p-6 rounded-2xl bg-white border border-mistral-hairline shadow-sm space-y-4">
+            <div class="flex items-center justify-between pb-3 border-b border-mistral-hairline">
+              <h3 class="text-base font-bold font-editorial text-mistral-ink flex items-center gap-2">
+                <span>💻</span> Kod Olarak Dışa Aktar
+              </h3>
+              <div class="flex gap-1.5 text-xs">
+                <button onclick="setExportFormat('css')" id="btn-fmt-css" class="px-2.5 py-1 rounded-md bg-mistral-orange text-white font-semibold transition">CSS Vars</button>
+                <button onclick="setExportFormat('tailwind')" id="btn-fmt-tailwind" class="px-2.5 py-1 rounded-md text-mistral-ink font-bold bg-mistral-cream hover:bg-mistral-cream-deeper text-mistral-ink border border-mistral-beige-deep transition">Tailwind</button>
+              </div>
+            </div>
+
+            <!-- Kod Bloğu -->
+            <div class="relative">
+              <pre id="code-output" class="p-4 rounded-xl bg-mistral-charcoal text-white text-xs font-mono overflow-x-auto leading-relaxed border border-mistral-hairline-soft h-36"></pre>
+              <button 
+                onclick="copyCode()" 
+                id="btn-copy-code"
+                class="absolute top-2.5 right-2.5 px-3 py-1.5 rounded-md bg-white/10 hover:bg-white/20 text-white text-xs font-medium transition backdrop-blur border border-white/20 flex items-center gap-1">
+                <span>📋</span> Kopyala
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
   </div>
+
+  <footer class="mt-16 text-center text-xs text-mistral-stone border-t border-mistral-hairline pt-6">
+    <p>Açık Kaynak Standalone Sürüm • Veriler: <a href="https://www.thecolorapi.com/" target="_blank" rel="noopener" class="underline hover:text-mistral-ink">The Color API</a></p>
+  </footer>
+
+  <script src="js/app.js"></script>
 </body>
 </html>

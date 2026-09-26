@@ -68,9 +68,31 @@ let currentColors = [];
           container.classList.add('hidden');
 
           try {
-            const res = await fetch(`/api/renk/scheme?hex=${encodeURIComponent(hexRaw)}&mode=${encodeURIComponent(mode)}`);
-            const data = await res.json();
-            if (!data.success) throw new Error(data.error);
+            // Standalone: The Color API doğrudan (CORS-açık), girdi temizleme istemci tarafında
+            const rawHex = (hexRaw || 'FA520F').trim().replace('#', '').toUpperCase().slice(0, 6);
+            const cleanHex = /^[0-9A-F]{3,6}$/.test(rawHex) ? rawHex : 'FA520F';
+            const validModes = ['monochrome', 'monochrome-dark', 'monochrome-light', 'analogic', 'complement', 'analogic-complement', 'triad', 'quad'];
+            const cleanMode = validModes.includes(mode) ? mode : 'analogic';
+
+            const res = await fetch(`https://www.thecolorapi.com/scheme?hex=${cleanHex}&mode=${cleanMode}&count=5`);
+            if (!res.ok) throw new Error('Renk servisi yanıt vermedi (HTTP ' + res.status + ')');
+            const raw = await res.json();
+
+            const colors = (raw.colors || []).map(c => ({
+              hex: (c.hex && c.hex.value) || '#000000',
+              cleanHex: (c.hex && c.hex.clean) || '000000',
+              rgb: (c.rgb && c.rgb.value) || 'rgb(0,0,0)',
+              hsl: (c.hsl && c.hsl.value) || 'hsl(0,0%,0%)',
+              name: (c.name && c.name.value) || 'Renk',
+              contrastText: (c.contrast && c.contrast.value) || '#ffffff'
+            }));
+
+            const data = {
+              success: true,
+              mode: cleanMode,
+              seedHex: '#' + cleanHex,
+              colors
+            };
 
             currentColors = data.colors || [];
             loading.classList.add('hidden');
@@ -172,10 +194,10 @@ let currentColors = [];
           const btnTw = document.getElementById('btn-fmt-tailwind');
           if (fmt === 'css') {
             btnCss.className = 'px-2.5 py-1 rounded-md bg-mistral-orange text-white font-semibold transition';
-            btnTw.className = 'px-2.5 py-1 rounded-md text-mistral-ink font-boldbg-mistral-cream hover:bg-mistral-cream-deeper text-mistral-ink border border-mistral-beige-deep transition';
+            btnTw.className = 'px-2.5 py-1 rounded-md text-mistral-ink font-bold bg-mistral-cream hover:bg-mistral-cream-deeper text-mistral-ink border border-mistral-beige-deep transition';
           } else {
             btnTw.className = 'px-2.5 py-1 rounded-md bg-mistral-orange text-white font-semibold transition';
-            btnCss.className = 'px-2.5 py-1 rounded-md text-mistral-ink font-boldbg-mistral-cream hover:bg-mistral-cream-deeper text-mistral-ink border border-mistral-beige-deep transition';
+            btnCss.className = 'px-2.5 py-1 rounded-md text-mistral-ink font-bold bg-mistral-cream hover:bg-mistral-cream-deeper text-mistral-ink border border-mistral-beige-deep transition';
           }
           updateCodeExport();
         }
